@@ -35,6 +35,7 @@
         if( wallet.json[key].addresses){
           wallet.json[key].addresses.forEach(function(address) {
             if(!cachedABIs.hasOwnProperty(address.toLowerCase())) {
+              console.log("*************  " + wallet.json[key].addresses + " " + address + " " + wallet.json[key].name)
               ABI.update(wallet.json[key].abi, address, wallet.json[key].name || "preload")
             }
           })
@@ -1263,7 +1264,21 @@
         return abiDecoder.decodeLogs(logs);
       };
       
-      wallet.import(JSON.stringify(walletsJson))
+      //has to be done since logs don't provide checksum on adresses
+      var walletsJsonFix = { "wallets": {} }
+      Object.keys(walletsJson.wallets).map(function(key){
+        walletsJsonFix.wallets[key.toLowerCase()] = walletsJson.wallets[key]
+        console.log("setting key ", key.toLowerCase() )
+        if(walletsJsonFix.wallets[key.toLowerCase()].owners) {
+           var owners = {}
+           Object.keys(walletsJsonFix.wallets[key.toLowerCase()].owners).map(function(key2){
+              owners[key2.toLowerCase()] = walletsJsonFix.wallets[key.toLowerCase()].owners[key2]
+           })
+           walletsJsonFix.wallets[key.toLowerCase()].owners = owners;             
+         }
+      })
+
+      wallet.import(JSON.stringify(walletsJsonFix))
       return wallet;
     });
   }

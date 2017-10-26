@@ -106,18 +106,29 @@ var txDefaultOrig =
       'name': 'Storjcoin X',
       'symbol': 'SJCX',
       'decimals': 8
-    },
-    {
-      'address': '0x967044ac23edf859e66af7819fb8b400501d65a7',
-      'name': 'Test Token',
-      'symbol': 'TTT',
-      'decimals': 18
     }
   ]
 };
 
 if (isElectron) {
   txDefaultOrig.wallet = "remotenode";
+}
+
+var txTokens = {
+  tokens: [
+    {
+      'address': '0x967044ac23edf859e66af7819fb8b400501d65a7',
+      'name': 'Test Token',
+      'symbol': 'TTT',
+      'decimals': 18
+    },
+    {
+      'address': '0xf0d58e5cb3d7b7210d84c81559690071384b0f60',
+      'name': 'Test Token2',
+      'symbol': 'TTT2',
+      'decimals': 18
+    }
+  ]
 }
 
 var txDefault = {
@@ -182,6 +193,7 @@ var txDefault = {
 function loadConfiguration () {
   var userConfig = JSON.parse(localStorage.getItem("userConfig"));
   Object.assign(txDefault, txDefaultOrig, userConfig);
+  Object.assign(txDefault.tokens, txTokens.tokens);
 }
 
 loadConfiguration();

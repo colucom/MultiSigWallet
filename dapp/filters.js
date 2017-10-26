@@ -59,19 +59,15 @@
                 response = $filter('token')(Wallets[walletAddress].tokens[address], log)
             })
             if(response) {
-              console.log('found!!!!!')
               return response;
             }
           }
-          //return log + "NOT ETHER";
         }
         return $filter('logParam')(log, isValue, Wallets, abis);
        }
     })
     .filter('logParam', function ($filter) {
       return function (log, isEther, Wallets, abis) {
-        console.log('logParam', log)
-         console.log('logParam2', isEther)
         if (log && Array.isArray(log)) {
           return log.reduce(function (finalString, address) {
             if (address.indexOf("0x") == -1){
@@ -115,7 +111,6 @@
     })
     .filter('ether', function () {
       return function (num) {
-        console.log(' filter ether', num) 
         if (num) {
           var casted = new Web3().toBigNumber(num);
           if (casted.gt(0)) {
@@ -140,7 +135,6 @@
           var token = tokenin;
           if(balance)
             token.balance = balance
-          console.log(' filter token', token) 
         if (token && token.balance) {
           var decimals = token.decimals;
           if(token.decimals === undefined){
