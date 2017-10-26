@@ -126,7 +126,9 @@
         var wallets = Wallet.getAllWallets();
 
         txDefault.tokens.map(function (token) {
+          //console.log("Checking token from config: ", token.symbol)
           if (!tokens[token.address]) {
+            //console.log("Adding token from config: ", token.symbol)
             tokens[token.address.toLowerCase()] = {
               name: token.name,
               symbol: token.symbol,

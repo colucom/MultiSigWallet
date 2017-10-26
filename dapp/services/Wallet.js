@@ -20,15 +20,34 @@
         mergedABI: []
       };
 
+
+
       wallet.addMethods = function (abi) {
         abiDecoder.addABI(abi);
       };
 
-      wallet.mergedABI = wallet.json.multiSigDailyLimit.abi.concat(wallet.json.multiSigDailyLimitFactory.abi).concat(wallet.json.token.abi);
+      var cachedABIs = ABI.get();
+
+  
+
+      wallet.mergedABI = []//wallet.json.multiSigDailyLimit.abi.concat(wallet.json.multiSigDailyLimitFactory.abi).concat(wallet.json.token.abi);
+      Object.keys(wallet.json).map(function(key) {
+        if( wallet.json[key].addresses){
+          wallet.json[key].addresses.forEach(function(address) {
+            if(!cachedABIs.hasOwnProperty(address.toLowerCase())) {
+              ABI.update(wallet.json[key].abi, address, wallet.json[key].name || "preload")
+            }
+          })
+        }
+        else
+          wallet.mergedABI  = wallet.mergedABI.concat(wallet.json[key].abi)
+        
+      })
+
 
       // Concat cached abis
-      var cachedABIs = ABI.get();
       Object.keys(cachedABIs).map(function(key) {
+        console.log("chaed abi key", key)
         if (cachedABIs[key].abi) {
           wallet.mergedABI = wallet.mergedABI.concat(cachedABIs[key].abi);
         }
@@ -1243,7 +1262,8 @@
       wallet.decodeLogs = function (logs) {
         return abiDecoder.decodeLogs(logs);
       };
-
+      
+      wallet.import(JSON.stringify(walletsJson))
       return wallet;
     });
   }

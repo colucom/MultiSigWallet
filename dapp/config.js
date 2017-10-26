@@ -106,6 +106,12 @@ var txDefaultOrig =
       'name': 'Storjcoin X',
       'symbol': 'SJCX',
       'decimals': 8
+    },
+    {
+      'address': '0x967044ac23edf859e66af7819fb8b400501d65a7',
+      'name': 'Test Token',
+      'symbol': 'TTT',
+      'decimals': 18
     }
   ]
 };

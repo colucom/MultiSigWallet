@@ -58,10 +58,12 @@
       );
 
       $scope.updateParams = function () {
+        console.log("walletCtrl update params", Token)
         $scope.batch = Web3Service.web3.createBatch();
         if ($scope.wallets) {
           // Init wallet balance of each wallet address
           Object.keys($scope.wallets).map(function (address) {
+            Token.setDefaultTokens( address )
             $scope.batch.add(
               Wallet.getBalance(
                 address,
@@ -74,6 +76,12 @@
                 }
               )
             );
+
+            // $scope.batch.add(
+            //   Token.setDefaultTokens(
+            //     address
+            //   )
+            // );
 
             $scope.batch.add(
               Wallet.getRequired(
