@@ -5,6 +5,20 @@ var txDefaultOrig =
   confirmAddGas: 37004,
   path: "44'/60'/0'/0",
   ethereumNode: "https://mainnet.infura.io:443",
+  watchContracts: { 
+    name: "No",
+     value: false 
+   },
+  watchContractsOptions : {
+   "yes" : {
+     name: "Yes",
+     value: true
+   },
+   "no" : {
+     name: "No",
+     value: false
+   }
+  },
   alertNode: {
     url : "https://alerts.gnosis.pm",
     authCode: null,
@@ -144,6 +158,10 @@ var txDefault = {
     {
       url : "https://kovan.infura.io:443",
       name: "Remote Kovan"
+    },
+    {
+      url : "https://ropsten.colu.com",
+      name: "Colu Ropsten"
     },
     {
       url : "http://localhost:8545",

@@ -326,8 +326,21 @@
 
           scope.isDisabled = isDisabled();
 
+          if (attrs.type && attrs.type == 'yes-no') {
+            scope.isDisabled = false
+            scope.click = function(option) {
+              scope.isDisabled = false
+              if (option.name == undefined) {
+                scope.ngModel = {name: option, value: option};
+              }
+              else {
+                scope.ngModel = option;
+              }
+            }                   
+          }
+
           // Wallet factory contract
-          if (attrs.type && attrs.type == 'contract-address') {
+          else if (attrs.type && attrs.type == 'contract-address') {
             scope.click = function(option) {
               if (option.address == undefined) {
                 scope.ngModel = {name: option, address: option};

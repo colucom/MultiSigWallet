@@ -20,7 +20,6 @@
       var abis = ABI.get();
       $scope.abis = abis //add abis to scope so we can give better info on transactions
       Object.keys(abis).map(function(key){
-         console.log('watching:', key)
          Transaction.watchAddress(abis[key].abi, key);
       })
 

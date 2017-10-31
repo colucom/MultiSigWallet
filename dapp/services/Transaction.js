@@ -2,7 +2,7 @@
   function () {
     angular
     .module('multiSigWeb')
-    .service('Transaction', function(Web3Service, Wallet, $rootScope, $uibModal, $interval, $q) {
+    .service('Transaction', function(Web3Service, Wallet, $rootScope, $uibModal, $interval, $q, Config) {
       var factory = {
         requiredReceipt: {},
         requiredInfo: {},
@@ -273,23 +273,27 @@
 
 
       factory.watchAddress = function (abi, address) {
-        console.log("watchAddress", abi)
-        var cont = Web3Service.web3.eth.contract(abi).at(address);
-        console.log("contract", cont)
-        blkNum = 1000;
-        var event = cont.allEvents({ fromBlock: blkNum, toBlock: 'latest' });
-        event.watch(function(err, res){
-            if(err) {
-              console.log("watchAddress err", err)
-            }
-            else {
-              console.log("watchAddress data", res)
-//res.transactionHash
-              factory.addNewByHash(res.transactionHash)
-            }
-        }, function(err) {
-            console.log("failed to create filter", err)
-        })
+        var config = Config.getUserConfiguration()
+        if(config && config.watchContracts && config.watchContracts.value) {
+          console.log('watching contract:', address)
+          var cont = Web3Service.web3.eth.contract(abi).at(address);
+          blkNum = 1000;
+          var event = cont.allEvents({ fromBlock: blkNum, toBlock: 'latest' });
+          event.watch(function(err, res){
+              if(err) {
+                console.log("watchAddress err", err)
+              }
+              else {
+                console.log("watchAddress data", res)
+  //res.transactionHash
+                factory.addNewByHash(res.transactionHash)
+              }
+          }, function(err) {
+              console.log("failed to create filter", err)
+          })
+        }
+        else
+          console.log("watch disabled")
      }
 
 // factory.watchAddress = function (abi, address) {

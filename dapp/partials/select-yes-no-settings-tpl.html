@@ -1,0 +1,23 @@
+<div>
+  <div class="input-group dropdown">
+      <input
+        ng-if="!isDisabled"
+        name="select-yes-no"
+        type="text"
+        class="form-control dropdown-toggle select-yes-no"
+        ng-model="ngModel.name"
+        ng-disabled="isDisabled"
+      />
+    <ul class="dropdown-menu settings-dropdown-menu">
+      <li ng-repeat="option in options"
+          ng-click="click(option)">
+          <p>
+              <span><b>{{option.name}}</b></span><br/>
+          </p>
+      </li>
+    </ul>    
+    <span class="input-group-addon dropdown-toggle settings-caret-container" data-toggle="dropdown">
+      <span class="caret"></span>
+    </span>
+  </div>
+</div>

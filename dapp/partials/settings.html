@@ -82,6 +82,18 @@
           <input id="path" type="string" ng-model="config.path" class="form-control" />
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-6 form-group">
+          <label for="watch-contracts">Watch contract</label>
+          <editable-select
+            ng-model="config.watchContracts"
+            options="config.watchContractsOptions"
+            other=""
+            template-url="select-yes-no-settings-tpl.html"
+            type="yes-no">
+          </editable-select>
+        </div>
+      </div>
     </div>
     <div class="panel-footer">
       <input type="submit" class="btn btn-default" value="Update settings" />
