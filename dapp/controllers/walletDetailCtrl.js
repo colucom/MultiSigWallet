@@ -374,10 +374,15 @@
                 Wallet.getConfirmations($scope.wallet.address, tx, function (e, confirmations) {
                   $scope.$apply(function () {
                     $scope.transactions[tx].confirmations = confirmations;
-                    if (confirmations.indexOf(Web3Service.coinbase) != -1) {
+                    console.log("compare to", Web3Service.coinbase)
+                    console.log("confirmations", confirmations)
+                    if (confirmations.indexOf(Web3Service.coinbase.toLowerCase()) != -1) {
+
+                      console.log("transactions confirmed", tx)
                       $scope.transactions[tx].confirmed=true;
                     }
                     else {
+                       console.log("transactions unconfirmed", tx)
                       $scope.transactions[tx].confirmed = false;
                     }
                   });

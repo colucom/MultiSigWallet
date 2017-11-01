@@ -16,8 +16,16 @@
         }
       );
 
+      //watch all known contracts
+      var abis = ABI.get();
+      $scope.abis = abis //add abis to scope so we can give better info on transactions
+      Object.keys(abis).map(function(key){
+         Transaction.watchAddress(abis[key].abi, key);
+      })
+
       $scope.$watch(
         function () {
+          //console.log("Watching",Transaction.updates)
           return Transaction.updates;
         },
         function () {
@@ -71,6 +79,8 @@
               }
             }
           );
+
+          console.log('$scope.transactions', $scope.transactions)
 
           $scope.totalItems = Object.keys($scope.transactions).length;
         }

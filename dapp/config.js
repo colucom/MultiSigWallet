@@ -5,6 +5,20 @@ var txDefaultOrig =
   confirmAddGas: 37004,
   path: "44'/60'/0'/0",
   ethereumNode: "https://mainnet.infura.io:443",
+  watchContracts: { 
+    name: "No",
+     value: false 
+   },
+  watchContractsOptions : {
+   "yes" : {
+     name: "Yes",
+     value: true
+   },
+   "no" : {
+     name: "No",
+     value: false
+   }
+  },
   alertNode: {
     url : "https://alerts.gnosis.pm",
     authCode: null,
@@ -114,6 +128,23 @@ if (isElectron) {
   txDefaultOrig.wallet = "remotenode";
 }
 
+var txTokens = {
+  tokens: [
+    {
+      'address': '0x967044ac23edf859e66af7819fb8b400501d65a7',
+      'name': 'Test Token',
+      'symbol': 'TTT',
+      'decimals': 18
+    },
+    {
+      'address': '0xf0d58e5cb3d7b7210d84c81559690071384b0f60',
+      'name': 'Test Token2',
+      'symbol': 'TTT2',
+      'decimals': 18
+    }
+  ]
+}
+
 var txDefault = {
   ethereumNodes : [
     {
@@ -127,6 +158,10 @@ var txDefault = {
     {
       url : "https://kovan.infura.io:443",
       name: "Remote Kovan"
+    },
+    {
+      url : "https://ropsten.colu.com",
+      name: "Colu Ropsten"
     },
     {
       url : "http://localhost:8545",
@@ -176,6 +211,7 @@ var txDefault = {
 function loadConfiguration () {
   var userConfig = JSON.parse(localStorage.getItem("userConfig"));
   Object.assign(txDefault, txDefaultOrig, userConfig);
+  Object.assign(txDefault.tokens, txTokens.tokens);
 }
 
 loadConfiguration();

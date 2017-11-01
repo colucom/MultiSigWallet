@@ -2,13 +2,16 @@
   function () {
     angular
     .module('multiSigWeb')
-    .service('Transaction', function(Web3Service, Wallet, $rootScope, $uibModal, $interval, $q) {
+    .service('Transaction', function(Web3Service, Wallet, $rootScope, $uibModal, $interval, $q, Config) {
       var factory = {
         requiredReceipt: {},
         requiredInfo: {},
         updates: 0,
         callbacks: {}
       };
+      
+
+
 
       function processReceipt(e, receipt) {
         if (!e && receipt) {
@@ -50,6 +53,26 @@
         catch (e) {}
         Web3Service.web3.eth.getTransaction(
           tx.txHash,
+          getTransactionInfo
+        );
+      };
+
+       factory.addNewByHash = function (txHash) {
+        var transactions = factory.get();
+        if(transactions[txHash])
+          return;
+        var tx = {};
+        tx.txHash = txHash;
+        tx.date = new Date();
+        transactions[txHash] = tx;
+        localStorage.setItem("transactions", JSON.stringify(transactions));
+        factory.updates++;
+        try {
+          $rootScope.$digest();
+        }
+        catch (e) {}
+        Web3Service.web3.eth.getTransaction(
+          txHash,
           getTransactionInfo
         );
       };
@@ -247,6 +270,47 @@
           cb(e);
         }
       };
+
+
+      factory.watchAddress = function (abi, address) {
+        var config = Config.getUserConfiguration()
+        if(config && config.watchContracts && config.watchContracts.value) {
+          console.log('watching contract:', address)
+          var cont = Web3Service.web3.eth.contract(abi).at(address);
+          blkNum = 1000;
+          var event = cont.allEvents({ fromBlock: blkNum, toBlock: 'latest' });
+          event.watch(function(err, res){
+              if(err) {
+                console.log("watchAddress err", err)
+              }
+              else {
+                console.log("watchAddress data", res)
+  //res.transactionHash
+                factory.addNewByHash(res.transactionHash)
+              }
+          }, function(err) {
+              console.log("failed to create filter", err)
+          })
+        }
+        else
+          console.log("watch disabled")
+     }
+
+// factory.watchAddress = function (abi, address) {
+//         console.log("watchAddress", abi)
+//         var cont = Web3Service.web3.eth.filter({ fromBlock: 1000, toBlock: 'latest', address }, function(error, data){
+//             if (error) {
+//               console.log("watchAddress err", error)
+//             }
+//             else {
+//               console.log("watchAddress data", data)
+
+//             }
+//         }, function(err) {
+//             console.log("failed to create filter", err)
+//         })
+//       }
+
 
       /**
       * Send signed transaction

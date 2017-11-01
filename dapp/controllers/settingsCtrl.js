@@ -7,7 +7,7 @@
       // Don't save the following config values to localStorage
       var configBlacklist = [
         "alertNodes", "alertNodesList", "ethereumNodes", "selectedEthereumNode", 
-        "walletFactoryAddresses", "selectedWalletFactoryAddress"
+        "walletFactoryAddresses", "selectedWalletFactoryAddress", "watchContractsOptions"
       ];
 
       /**
@@ -130,6 +130,9 @@
         // Create a config copy
         var configCopy = {};
         angular.copy($scope.config, configCopy);
+
+
+        console.log('update config', configCopy)
 
         // Wraps selectedEthereumNode.url to ethereumNode
         // See reverse mapping in loadConfig()

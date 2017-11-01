@@ -49,8 +49,25 @@
         }
       };
     })
+    .filter('logParamOrContractOrToken', function ($filter) {
+       return function (log, isValue , address, Wallets, abis) {
+        if (address && isValue) { // lets make sure its not a token before we decide its ether
+          if(Wallets) {
+            var response = false
+            Object.keys(Wallets).map(function(walletAddress) {
+              if(Wallets[walletAddress].tokens && Wallets[walletAddress].tokens[address])
+                response = $filter('token')(Wallets[walletAddress].tokens[address], log)
+            })
+            if(response) {
+              return response;
+            }
+          }
+        }
+        return $filter('logParam')(log, isValue, Wallets, abis);
+       }
+    })
     .filter('logParam', function ($filter) {
-      return function (log, isEther) {
+      return function (log, isEther, Wallets, abis) {
         if (log && Array.isArray(log)) {
           return log.reduce(function (finalString, address) {
             if (address.indexOf("0x") == -1){
@@ -65,6 +82,15 @@
           return "0x0";
         }
         else if(log && log.indexOf && log.indexOf("0x") != -1){
+          // do we know this address?
+          if(Wallets) {
+            if(Wallets[log])
+              return Wallets[log].name
+          }
+          if(abis) {
+            if(abis[log])
+              return abis[log].name
+          }
           return log.slice(0, 10) + "...";
         }
         else if ( log && log.match(/^[0-9]+$/) !== null) {
@@ -105,7 +131,10 @@
       };
     })
     .filter('token', function () {
-        return function (token) {
+        return function (tokenin, balance) {
+          var token = tokenin;
+          if(balance)
+            token.balance = balance
         if (token && token.balance) {
           var decimals = token.decimals;
           if(token.decimals === undefined){

@@ -67,7 +67,7 @@
                 {{param.name}}:
                 <span popover-enable="param.value" popover-trigger="'mouseenter'"
                   uib-popover-template="'partials/paramValueData.html'">
-                  {{param.value|addressCanBeOwner:wallet|logParam:(param.name == 'value' && transaction.decodedData.title == 'submitTransaction')}}
+                  {{param.value|addressCanBeOwner|logParam:(param.name == 'value' && transaction.decodedData.title == 'submitTransaction')}}
                 </span>
               </li>
             </ul>
@@ -91,7 +91,7 @@
           <span ng-hide="transaction.receipt">
             No
           </span>
-        </td>
+        </td>     
         <td>
           <ul ng-show="transaction.receipt.decodedLogs.length">
             <li ng-repeat="log in transaction.receipt.decodedLogs track by $index">
@@ -100,7 +100,7 @@
                 <li ng-repeat="param in log.events track by $index">
                   {{param.name}}:
                   <span uib-popover="{{param.value}}" popover-enable="param.value && param.value.toString().length > 7" popover-trigger="'mouseenter'">
-                    {{param.value|addressCanBeOwner|logParam:(param.name == 'value')}}
+                    {{param.value|addressCanBeOwner|logParamOrContractOrToken:(param.name == 'value'):(log.address):wallets:abis}}
                   </span>
                 </li>
               </ul>
