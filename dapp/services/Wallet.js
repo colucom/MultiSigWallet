@@ -27,15 +27,12 @@
       };
 
       var cachedABIs = ABI.get();
-
-  
-
-      wallet.mergedABI = []//wallet.json.multiSigDailyLimit.abi.concat(wallet.json.multiSigDailyLimitFactory.abi).concat(wallet.json.token.abi);
+      wallet.mergedABI = []
       Object.keys(wallet.json).map(function(key) {
         if( wallet.json[key].addresses){
           wallet.json[key].addresses.forEach(function(address) {
             if(!cachedABIs.hasOwnProperty(address.toLowerCase())) {
-              console.log("*************  " + wallet.json[key].addresses + " " + address + " " + wallet.json[key].name)
+              //console.log("*************  " + wallet.json[key].addresses + " " + address + " " + wallet.json[key].name)
               ABI.update(wallet.json[key].abi, address, wallet.json[key].name || "preload")
             }
           })
