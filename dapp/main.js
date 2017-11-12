@@ -35,7 +35,10 @@ function restServerSetup () {
         ledger.comm_node.create_async().then(function (comm) {
           connection = new ledger.eth(comm);
           resolve(connection);
-        });
+        })
+        // .catch(function(err){
+        //   reject({error: 'connecting to ledger timeout'});
+        // });
       }
       else {
         const checkPromise = new Promise( function (resolve, reject) {
@@ -73,7 +76,7 @@ function restServerSetup () {
           setTimeout(
           () => {
             connectionOpened = false;
-            reject({error: 'timeout'});
+            reject({error: 'connecting to ledger timeout'});
           },
           10000);
         })
@@ -153,7 +156,7 @@ function restServerSetup () {
               res.json({signed: rawTx});
           })
           .catch(error => res.status(400).send(error));
-      });
+      }).catch(error => res.status(400).send(error));
     }
     else {
       res.status(400).json({error: "Missing params"});
