@@ -2,14 +2,17 @@
   function () {
     angular
     .module('multiSigWeb')
-    .service('Wallet', function ($window, $http, $q, $rootScope, $uibModal, Utils, ABI, Connection, Web3Service) {
+    .service('Wallet', function ($window, $http, $q, $rootScope, $uibModal, Utils, ABI, $injector, Connection, Web3Service) {
 
       // Init wallet factory object
+      var Transaction = null; 
       var wallet = {
         wallets: JSON.parse(localStorage.getItem("wallets")) || {},
         json : abiJSON,
         txParams: {
           nonce: null,
+          gasPriceSettings: txDefault.gasPrice,
+          gasLimitSettings: txDefault.gasLimit,
           gasPrice: txDefault.gasPrice,
           gasLimit: txDefault.gasLimit,
           confirmAddGas: txDefault.confirmAddGas
@@ -89,13 +92,21 @@
       * Return tx object, with default values, overwritted by passed params
       **/
       wallet.txDefaults = function (tx) {
+        // if this tx has the same nounce as any pervious transaction we sent we need to
+        // make sure that we increse the gas price or it will not be accepted by the network
+        if(!Transaction)
+          Transaction = $injector.get('Transaction');
+        var gasprice = Transaction.getupdatedGasPriceIfBumpNeeded(tx || { 'nonce': wallet.txParams.nonce }, wallet.txParams.gasPrice)
+
         var txParams = {
-          gasPrice: EthJS.Util.intToHex(wallet.txParams.gasPrice),
+          gasPrice: EthJS.Util.intToHex(gasprice),
           gas: EthJS.Util.intToHex(wallet.txParams.gasLimit),
           confirmAddGas: wallet.txParams.confirmAddGas,
           confirmAddGasHex: EthJS.Util.intToHex(wallet.txParams.confirmAddGas),
           from: Web3Service.coinbase
         };
+
+        //
 
         Object.assign(txParams, tx);
         return txParams;

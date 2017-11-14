@@ -271,6 +271,33 @@
         }
       };
 
+      factory.getupdatedGasPriceIfBumpNeeded = function(tx, gasPrice) {
+        var transactions = factory.get()
+        var transaction = null
+        try {
+          var filtered = Object.keys(transactions).map(function(key){
+            return transactions[key]
+          }).filter(function(tras){
+            return tx.nonce == tras.info.nonce;
+          })
+
+          if(filtered && filtered.length > 0) {
+            transaction = filtered.reduce(function(prev, curr){
+              return  parseInt(prev.info.gasPrice) >  parseInt(curr.info.gasPrice) ? prev : curr; 
+            });
+          }
+          if(transaction) {
+            console.log("increase gas price for tx overwirte", Math.round(parseInt(transaction.info.gasPrice) * 1.1))
+            return Math.round(parseInt(transaction.info.gasPrice) * 1.1)
+          }
+        }
+        catch(e) {
+           console.log('getupdatedGasPriceIfBumpNeeded', e)
+        }
+        console.log('returning ', gasPrice)
+        return gasPrice        
+      }
+
 
       factory.watchAddress = function (abi, address) {
         var config = Config.getUserConfiguration()
