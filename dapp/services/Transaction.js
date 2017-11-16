@@ -122,6 +122,7 @@
       * Send transaction, signed by wallet service provider
       */
       factory.send = function (tx, cb) {
+        tx.gasPrice = getupdatedGasPriceIfBumpNeeded(tx, undefined)       
         Web3Service.sendTransaction(
           Web3Service.web3.eth,
           [
@@ -215,6 +216,7 @@
       * selected method to execute and related params.
       */
       factory.sendMethod = function (tx, abi, method, params, cb) {
+        tx.gasPrice = getupdatedGasPriceIfBumpNeeded(tx, undefined)
         // Instance contract
         var instance = Web3Service.web3.eth.contract(abi).at(tx.to);
         var transactionParams = params.slice();
@@ -286,9 +288,10 @@
               return  parseInt(prev.info.gasPrice) >  parseInt(curr.info.gasPrice) ? prev : curr; 
             });
           }
+          func
           if(transaction) {
-            console.log("increase gas price for tx overwirte", Math.round(parseInt(transaction.info.gasPrice) * 1.1))
-            return Math.round(parseInt(transaction.info.gasPrice) * 1.1)
+            console.log("increase gas price for tx overwirte", Math.ceil(parseInt(transaction.info.gasPrice) * 1.11))
+            return Math.ceil(parseInt(transaction.info.gasPrice) * 1.11)
           }
         }
         catch(e) {
@@ -297,6 +300,8 @@
         console.log('returning ', gasPrice)
         return gasPrice        
       }
+
+
 
 
       factory.watchAddress = function (abi, address) {

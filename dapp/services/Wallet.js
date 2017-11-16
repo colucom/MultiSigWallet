@@ -15,7 +15,7 @@
           gasLimitSettings: txDefault.gasLimit,
           gasPrice: txDefault.gasPrice,
           gasLimit: txDefault.gasLimit,
-          confirmAddGas: txDefault.confirmAddGas
+          //confirmAddGas: txDefault.confirmAddGas
         },
         accounts: [],
         methodIds: {},
@@ -100,9 +100,12 @@
 
         var txParams = {
           gasPrice: EthJS.Util.intToHex(gasprice),
-          gas: EthJS.Util.intToHex(wallet.txParams.gasLimit),
-          confirmAddGas: wallet.txParams.confirmAddGas,
-          confirmAddGasHex: EthJS.Util.intToHex(wallet.txParams.confirmAddGas),
+          // comment out gas here so we will use the estimategas on the engine-provider subprovider
+          // for some reason if gas is specified that is always whats used and not sent as a bound to estimategas
+          
+          //gas: EthJS.Util.intToHex(wallet.txParams.gasLimit),
+          //confirmAddGas: wallet.txParams.confirmAddGas,
+          //confirmAddGasHex: EthJS.Util.intToHex(wallet.txParams.confirmAddGas),
           from: Web3Service.coinbase
         };
 
@@ -1064,18 +1067,18 @@
           to: address,
           data: instance.confirmTransaction.getData(txId)
         }, function (err, gas) {
-          if(defaults.confirmAddGas) {
-           console.log("adding gas: ", defaults.confirmAddGas)
-           console.log("computed gas: ", gas)
-           console.log("total gas: ", gas + defaults.confirmAddGas)
-          }
+          // if(defaults.confirmAddGas) {
+          //  console.log("adding gas: ", defaults.confirmAddGas)
+          //  console.log("computed gas: ", gas)
+          //  console.log("total gas: ", gas + defaults.confirmAddGas)
+          // }
           Web3Service.sendTransaction(
             instance.confirmTransaction,
             [
               txId,
               {
                 gasPrice: defaults.gasPrice,
-                gas: gas + defaults.confirmAddGas,
+                gas: gas, //+ defaults.confirmAddGas,
                 from: defaults.from
               }
             ],

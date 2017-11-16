@@ -141,6 +141,12 @@ var txTokens = {
       'name': 'Test Token2',
       'symbol': 'TTT2',
       'decimals': 18
+    },
+    {
+      'address': '0x8de8a1ea9caa18fdacbf3e4b70e093d70aa2607e',
+      'name': 'Test Token3',
+      'symbol': 'TTT3',
+      'decimals': 18
     }
   ]
 }
