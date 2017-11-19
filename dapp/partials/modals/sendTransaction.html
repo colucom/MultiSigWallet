@@ -13,9 +13,26 @@
       <label for="name">Contract name (optional)</label>
       <input type="text" class="form-control" ng-model="name" name="name" />
     </div>
-    <div class="form-group">
-      <label for="value">Amount (ETH)</label>
-      <input id="value" type="number" class="form-control" ng-model="tx.value" min="0" max="999999999999999" ng-required="!abi">
+    <div class="row">
+      <div class="col-md-6 form-group">
+        <label for="value">Amount (ETH)</label>
+        <input id="value" type="number" class="form-control" ng-model="tx.value" min="0" max="999999999999999" ng-required="!abi" ng-change='calculateGas()'>
+      </div>
+      <div class="col-md-6 form-group">
+        <label for="gas">Gas limit (Wei)</label>
+        <input id="gas" type="number" class="form-control" ng-model="tx.gas" min="0" max="999999999999999"
+         ng-change='calculateGas()'>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 form-group">
+        <label for="gasPrice">Gas price (GWei)</label>
+        <input id="gasPrice" type="number" class="form-control" ng-model="tx.gasPrice" min="0" max="9999999999999999" ng-change='calculateGas()'>
+      </div>
+      <div class="col-md-6 form-group">
+        <label for="maxFees">Max fees (ETH)</label>
+        <input id="maxFees" type="number" class="form-control" ng-model="tx.maxFees" ng-readonly="true" min="0" max="9999999999999999">
+      </div>
     </div>
     <div class="form-group">
       <label for="abi">ABI string</label>
@@ -33,7 +50,7 @@
       <div class="form-group" ng-repeat="param in abiArray[method.index].inputs" >
         <div ng-switch on="param.type">
           <label ng-attr-for="{{ 'value-' + $index }}">{{param.name}}</label>
-          <input ng-attr-id="{{ 'value-' + $index }}" ng-switch-default type="text" class="form-control" ng-model="params[$index]">
+          <input ng-attr-id="{{ 'value-' + $index }}" ng-switch-default type="text" class="form-control" ng-model="params[$index]" ng-change='calculateGas()'>
         </div>
       </div>
     </div>

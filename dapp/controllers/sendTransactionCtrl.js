@@ -81,9 +81,11 @@
         }
       };
 
-      $scope.simulate = function () {
+      $scope.simulate = function (hideDialog) {
         var tx = {};
         Object.assign(tx, $scope.tx);
+        delete tx.gasPrice
+        delete tx.gas
         var params = [];
         Object.assign(params, $scope.params);
         if ($scope.method) {
@@ -103,23 +105,44 @@
         tx.from = Web3Service.coinbase;
         // if method, use contract instance method
         if ($scope.method && $scope.method.index !== undefined && $scope.method.index !== "") {
+          var txorig = tx
           Transaction.simulateMethod(tx, $scope.abiArray, $scope.method.name, params, function (e, tx) {
             if (e) {
               Utils.dangerAlert(e);
             }
             else {
-              Utils.simulatedTransaction(tx);
+              if(!hideDialog)
+                Utils.simulatedTransaction(tx);
+              var defaults = Wallet.txDefaults(txorig)
+              $scope.tx.gasPrice = parseInt(parseInt(defaults.gasPrice) * 1e-9)
+
+              var instance = Web3Service.web3.eth.contract($scope.abiArray).at($scope.tx.to);
+              txorig.data = instance[$scope.method.name].getData.apply(this, $scope.params);
+              console.log('txorig', txorig)
+
+              Web3Service.web3.eth.estimateGas(txorig,function (err, gas) {
+                $scope.tx.gas = parseInt(gas || "0")
+                $scope.tx.maxFees = defaults.gasPrice * $scope.tx.gas * 1e-18
+              })
             }
           });
         }
         else {
           try {
+            var txorig = tx
             Transaction.simulate(tx, function (e, tx) {
               if (e) {
                 Utils.dangerAlert(e);
               }
               else {
-                Utils.simulatedTransaction(tx);
+                if(!hideDialog)
+                  Utils.simulatedTransaction(tx);
+                var defaults = Wallet.txDefaults(txorig)
+                $scope.tx.gasPrice = parseInt(parseInt(defaults.gasPrice) * 1e-9)
+                Web3Service.web3.eth.estimateGas(txorig,function (err, gas) {
+                  $scope.tx.gas = parseInt(gas || "0")
+                  $scope.tx.maxFees = defaults.gasPrice * $scope.tx.gas * 1e-18
+                })
               }
             });
           } catch (error) {
@@ -176,11 +199,14 @@
         if (to && to.length > 40) {
           to = to.toLowerCase();
           $scope.abis = ABI.get();
+          console.log('$scope.abis', $scope.abis)
           if ($scope.abis[to]) {
             $scope.abi = JSON.stringify($scope.abis[to].abi);
             $scope.name = $scope.abis[to].name;
             $scope.updateMethods();
+            $scope.simulate(true)
           } else {
+            $scope.simulate(true)
             // try to fetch from etherscan
             Transaction.getEthereumChain().then(
               function (data) {
@@ -194,11 +220,16 @@
                       $scope.updateMethods();
                       // save for next time
                       ABI.update($scope.abiArray, to, $scope.name)
+                      $scope.simulate(true)                      
                     }
                   })
               })
           }
         }
+      };
+
+      $scope.calculateGas = function() {
+         $scope.simulate(true)
       };
 
       /*$scope.updateMethods = function () {

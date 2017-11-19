@@ -87,6 +87,9 @@
         );
       };
 
+      wallet.getCurrentNonce = function() {
+        return wallet.txParams.nonce;
+      }
 
       /**
       * Return tx object, with default values, overwritted by passed params
@@ -102,7 +105,7 @@
           gasPrice: EthJS.Util.intToHex(gasprice),
           // comment out gas here so we will use the estimategas on the engine-provider subprovider
           // for some reason if gas is specified that is always whats used and not sent as a bound to estimategas
-          
+
           //gas: EthJS.Util.intToHex(wallet.txParams.gasLimit),
           //confirmAddGas: wallet.txParams.confirmAddGas,
           //confirmAddGasHex: EthJS.Util.intToHex(wallet.txParams.confirmAddGas),
