@@ -199,7 +199,8 @@
         if (to && to.length > 40) {
           to = to.toLowerCase();
           $scope.abis = ABI.get();
-          console.log('$scope.abis', $scope.abis)
+          //console.log('$scope.abis', $scope.abis)
+          //ABI will contain
           if ($scope.abis[to]) {
             $scope.abi = JSON.stringify($scope.abis[to].abi);
             $scope.name = $scope.abis[to].name;
