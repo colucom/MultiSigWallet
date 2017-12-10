@@ -122,7 +122,7 @@
       * Send transaction, signed by wallet service provider
       */
       factory.send = function (tx, cb) {
-        tx.gasPrice = factoy.getupdatedGasPriceIfBumpNeeded(tx, undefined)       
+        tx.gasPrice = factory.getupdatedGasPriceIfBumpNeeded(tx, undefined)       
         Web3Service.sendTransaction(
           Web3Service.web3.eth,
           [
