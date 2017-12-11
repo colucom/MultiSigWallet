@@ -126,6 +126,9 @@ function restServerSetup () {
         function(eth) {
           // Encode using ethereumjs-tx
           req.body.tx.gasLimit = req.body.tx.gas;
+
+          console.log('req.body.tx', req.body.tx)
+
           let tx = new EthereumTx(req.body.tx);
 
           // Set the EIP155 bits

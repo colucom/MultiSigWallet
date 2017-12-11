@@ -122,7 +122,10 @@
       * Send transaction, signed by wallet service provider
       */
       factory.send = function (tx, cb) {
-        tx.gasPrice = factory.getupdatedGasPriceIfBumpNeeded(tx, undefined)       
+        tx.gasPrice = factory.getupdatedGasPriceIfBumpNeeded(tx, undefined)
+        if(tx.gasPrice === undefined) {
+          delete tx.gasPrice
+        }
         Web3Service.sendTransaction(
           Web3Service.web3.eth,
           [
@@ -217,6 +220,9 @@
       */
       factory.sendMethod = function (tx, abi, method, params, cb) {
         tx.gasPrice = factory.getupdatedGasPriceIfBumpNeeded(tx, undefined)
+        if(tx.gasPrice === undefined) {
+          delete tx.gasPrice
+        }
         // Instance contract
         var instance = Web3Service.web3.eth.contract(abi).at(tx.to);
         var transactionParams = params.slice();
