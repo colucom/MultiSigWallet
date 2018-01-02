@@ -86,7 +86,8 @@
           $scope.wallet.address,
           tx,
           $scope.abiArray,
-          $scope.method && $scope.method.name?$scope.method.name:null,
+          $scope.method && $scope.method.name ? $scope.method.name : null,
+          $scope.method && $scope.method.inputs ? $scope.method.inputs.map(function(obj){return obj.type}).join(',') : null,
           params,
           {onlySimulate: false},
           function (e, tx) {
@@ -139,7 +140,8 @@
           $scope.wallet.address,
           tx,
           $scope.abiArray,
-          $scope.method && $scope.method.index?$scope.method.name:null,
+          $scope.method && $scope.method.index ? $scope.method.name : null,
+          $scope.method && $scope.method.inputs ? $scope.method.inputs.map(function(obj){return obj.type}).join(',') : null,
           params,
           {onlySimulate: true},
           function (e, tx) {

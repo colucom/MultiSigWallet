@@ -1234,11 +1234,19 @@
       /**
       * Submit transaction
       **/
-      wallet.submitTransaction = function (address, tx, abi, method, params, options, cb) {
+      wallet.submitTransaction = function (address, tx, abi, method, methodSig, params, options, cb) {
         var data = '0x0';
         if (abi && method) {
           var instance = Web3Service.web3.eth.contract(abi).at(tx.to);
-          data = instance[method].getData.apply(this, params);
+          // console.log('method', method);
+          // console.log('methodSig', methodSig);
+          // console.log('params', params);
+          if(methodSig) {
+            data = instance[method][methodSig].getData.apply(this, params);
+          } else {
+            data = instance[method].getData.apply(this, params);
+          }
+          // console.log('data', data);
         }
         var walletInstance = Web3Service.web3.eth.contract(wallet.json.multiSigDailyLimit.abi).at(address);
         // Get nonce

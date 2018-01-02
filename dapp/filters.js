@@ -81,7 +81,7 @@
         else if (log === "0x0") {
           return "0x0";
         }
-        else if(log && log.indexOf && log.indexOf("0x") != -1){
+        else if(log && typeof log === "string" && log.indexOf && log.indexOf("0x") != -1){
           // do we know this address?
           if(Wallets) {
             if(Wallets[log])
@@ -93,7 +93,7 @@
           }
           return log.slice(0, 10) + "...";
         }
-        else if ( log && log.match(/^[0-9]+$/) !== null) {
+        else if ( log && typeof log === "string" && log.match(/^[0-9]+$/) !== null) {
           if (isEther) {
             return $filter('ether')(log);
           }
