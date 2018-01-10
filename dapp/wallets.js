@@ -1,71 +1,59 @@
 	var walletsJson = {
 		"wallets": {
-			"0x319d731726cba29118aa76dba76f9cbe67e6c321" : {
-				"name": "EvilLibaPreload",
-				"owners" : {
-					"0xa1018fede70680732c2464ea689fe9dee09e2e32" : "Rotem",
-					"0x9f8ecfa57fcc33d1855065a38f31a04e9bb6e2da" : "Liba Evil"
+			"0xcdc9f8be075442a78f219fdd48cbf7a66c13d556": {
+				"name": "Sale / Token owner",
+				"owners": {
+					"0x251B49a9F3A8745968ccc807a220e080111508F3": "Amos",
+					"0x59618C43F9e672266100128Fc13aa7D870148445": "Mark",
+					"0x83C469034039ab0761319EC388CfEf7eAFF1e61d": "Dudu",
+					"0xA1018fEDe70680732c2464Ea689FE9dEE09E2E32": "Rotem",
+					"0x4DcBde0E4Fd2E3a80F2b054d69e8476967833db7": "Tal"
 				},
-				"tokens" : {}
+				"tokens": {}
 			},
-			"0x1342dd832909c1c0c6bb97968f5994e7981f5e62" : {
-				"name": "Development Pool [Private NW]",
-				"owners" : {},
-				"tokens" : {}
-			},
-			"0x6cfa8a400aec5e342dfeb45b2f851d90c5c15138" : {
-				"name": "Team Pool [Private NW]",
-				"owners" : {},
-				"tokens" : {}
-			},
-			"0x8bf20c41ee6a9fd84e81d6f6df872d9628cd08b2" : {
-				"name": "Owner (BejaMultisigWallet)",
-				"owners" : {
-					"0xa1018fede70680732c2464ea689fe9dee09e2e32" : "Rotem",
-					"0x4dcbde0e4fd2e3a80f2b054d69e8476967833db7" : "Tal",
-					"0x9ac4f6e64d56043991f486e375994f67ecbfdde0" : "Lior",
-					"0x9f8ecfa57fcc33d1855065a38f31a04e9bb6e2da" : "Beja(Mist)",
-					"0x3accf610998c2aa0a6c6452b6da0bf75a172f955" : "Oded"
-
+			"0x5ac8a4acdfaf51d20bb1213c7e3c89fdea640624": {
+				"name": "Development Pool owner",
+				"owners": {
+					"0x251B49a9F3A8745968ccc807a220e080111508F3": "Amos",
+					"0x59618C43F9e672266100128Fc13aa7D870148445": "Mark",
+					"0x83C469034039ab0761319EC388CfEf7eAFF1e61d": "Dudu",
+					"0xA1018fEDe70680732c2464Ea689FE9dEE09E2E32": "Rotem",
+					"0x4DcBde0E4Fd2E3a80F2b054d69e8476967833db7": "Tal"
 				},
-				"tokens" : {}
+				"tokens": {}
 			},
-			"0x5BFa3c4B982c53E5a7C507Ff83D6D93e0FE83B84" : {
-				"name": "Funding Recipient",
-				"owners" : {
-					"0xa1018fede70680732c2464ea689fe9dee09e2e32" : "Rotem",
-					"0x4dcbde0e4fd2e3a80f2b054d69e8476967833db7" : "Tal",
-					"0x9ac4f6e64d56043991f486e375994f67ecbfdde0" : "Lior"
+			"0x4a133B610cBe37a80b4BbADA59CD67b83b5B2F70": {
+				"name": "Community Pool owner",
+				"owners": {
+					"0x251B49a9F3A8745968ccc807a220e080111508F3": "Amos",
+					"0x59618C43F9e672266100128Fc13aa7D870148445": "Mark",
+					"0x83C469034039ab0761319EC388CfEf7eAFF1e61d": "Dudu",
+					"0xA1018fEDe70680732c2464Ea689FE9dEE09E2E32": "Rotem",
+					"0x4DcBde0E4Fd2E3a80F2b054d69e8476967833db7": "Tal"
 				},
-				"tokens" : {}
+				"tokens": {}
 			},
-			"0x1bb8c3606a4528ca7c3da385a59f16b32e3b8e12" : {
-				"name": "Community Pool",
-				"owners" : {
-					"0xa1018fede70680732c2464ea689fe9dee09e2e32" : "Rotem",
-					"0x4dcbde0e4fd2e3a80f2b054d69e8476967833db7" : "Tal",
-					"0x9ac4f6e64d56043991f486e375994f67ecbfdde0" : "Lior"
+			"0x179462DC915e95d723e8f63875251872daEbc67e": {
+				"name": "Vesting / Team Pool owner",
+				"owners": {
+					"0x251B49a9F3A8745968ccc807a220e080111508F3": "Amos",
+					"0x59618C43F9e672266100128Fc13aa7D870148445": "Mark",
+					"0x83C469034039ab0761319EC388CfEf7eAFF1e61d": "Dudu",
+					"0xA1018fEDe70680732c2464Ea689FE9dEE09E2E32": "Rotem",
+					"0x4DcBde0E4Fd2E3a80F2b054d69e8476967833db7": "Tal"
 				},
-				"tokens" : {}
+				"tokens": {}
 			},
-			"0xb498b0981aF40f022E556dCEEc0Bb767e76f9Bc0" : {
-				"name": "Development Pool",
-				"owners" : {
-					"0xa1018fede70680732c2464ea689fe9dee09e2e32" : "Rotem",
-					"0x4dcbde0e4fd2e3a80f2b054d69e8476967833db7" : "Tal",
-					"0x9ac4f6e64d56043991f486e375994f67ecbfdde0" : "Lior"
+			"0xf58Fb48ca013856b73EfF44A403CFEbee021e8DE": {
+				"name": "Recipient funds",
+				"owners": {
+					"0x251B49a9F3A8745968ccc807a220e080111508F3": "Amos",
+					"0x59618C43F9e672266100128Fc13aa7D870148445": "Mark",
+					"0x83C469034039ab0761319EC388CfEf7eAFF1e61d": "Dudu",
+					"0xA1018fEDe70680732c2464Ea689FE9dEE09E2E32": "Rotem",
+					"0xa5b248c56436398c2B9801DDB50ce2907166773f": "Gal"
 				},
-				"tokens" : {}
-			},
-			"0xCE31425A5fd1a46FbE3c3A01A64A85C99ba82Fe9" : {
-				"name": "Team Pool",
-				"owners" : {
-					"0xa1018fede70680732c2464ea689fe9dee09e2e32" : "Rotem",
-					"0x4dcbde0e4fd2e3a80f2b054d69e8476967833db7" : "Tal",
-					"0x9ac4f6e64d56043991f486e375994f67ecbfdde0" : "Lior"
-				},
-				"tokens" : {}
+				"tokens": {}
 			}
-
 		}
 	}
