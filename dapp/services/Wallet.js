@@ -1115,9 +1115,6 @@
         })
       };
 
-
-       
-
       /**
       * Sign confirm transaction offline by another wallet owner
       */
@@ -1140,15 +1137,35 @@
       */
       wallet.executeTransaction = function (address, txId, options, cb) {
         var instance = Web3Service.web3.eth.contract(wallet.json.multiSigDailyLimit.abi).at(address);
-        Web3Service.sendTransaction(
-          instance.executeTransaction,
-          [
-            txId,
-            wallet.txDefaults()
-          ],
-          options,
-          cb
-        );
+        var defaults = wallet.txDefaults();
+
+        wallet.getInternalTransactionGas(address, txId, function(err, internalGas) {
+           Web3Service.web3.eth.estimateGas({
+              from: defaults.from,
+              to: address,
+              data: instance.executeTransaction.getData(txId)
+            }, function (err, gas) {
+              console.log('computed gas', internalGas + gas)
+              // if(defaults.confirmAddGas) {
+              //  console.log("adding gas: ", defaults.confirmAddGas)
+              //  console.log("computed gas: ", gas)
+              //  console.log("total gas: ", gas + defaults.confirmAddGas)
+              // }
+              Web3Service.sendTransaction(
+                instance.executeTransaction,
+                [
+                  txId,
+                  {
+                    gasPrice: defaults.gasPrice,
+                    gas: internalGas ? internalGas + gas : gas, //+ defaults.confirmAddGas,
+                    from: defaults.from
+                  }
+                ],
+                options,
+                cb
+              );
+            })
+        });
       };
 
       /**
