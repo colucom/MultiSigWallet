@@ -25,7 +25,8 @@
     .filter('address', function () {
       return function(address) {
         if(address && address.length > 3){
-          return address.slice(0, 12) + "...";
+          //return address.slice(0, 12) + "...";
+          return address;
         }
       };
     })
@@ -74,7 +75,8 @@
               return finalString + address + ", ";
             }
             else{
-              return finalString + address.slice(0, 20) + "..., ";
+              //return finalString + address.slice(0, 20) + "..., ";
+              return finalString + address  + ", ";
             }
           }, "").slice(0, -2);
         }
@@ -91,7 +93,8 @@
             if(abis[log])
               return abis[log].name
           }
-          return log.slice(0, 10) + "...";
+          //return log.slice(0, 10) + "...";
+          return log;
         }
         else if ( log && typeof log === "string" && log.match(/^[0-9]+$/) !== null) {
           if (isEther) {
@@ -101,10 +104,14 @@
             return log.toString().slice(0, 7);
           }
           else{
-            return new Web3().toBigNumber(log).toExponential(3);
+            //return new Web3().toBigNumber(log).toExponential(3);
+            return log.toString(10);
           }
         }
         else {
+          bg = new Web3().toBigNumber(log)
+          if (bg)
+            return bg.toString(10)
           return log;
         }
       };

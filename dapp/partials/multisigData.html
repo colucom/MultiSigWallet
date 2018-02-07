@@ -1,4 +1,4 @@
 <div class="tx-data">
-  {{transactions[txId].data|limitTo:1000}}
-  <span ng-show="transactions[txId].data.length > 1000">...</span>  
+  {{transactions[txId].data|limitTo:5000}}
+  <span ng-show="transactions[txId].data.length > 5000">...</span>  
 </div>

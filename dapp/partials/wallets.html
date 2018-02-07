@@ -22,7 +22,7 @@
           Balance
         </th>
         <th>
-          Required confirmations
+          Required confs
         </th>
         <th>
           Daily limit
@@ -39,7 +39,7 @@
             uib-popover="This wallet was created on another chain" popover-trigger="'mouseenter'"
             class="not-on-chain-wallet pull-left glyphicon glyphicon-exclamation-sign"></span>
           <a ng-href="#/wallet/{{wallet.address}}" ng-bind-html="wallet.name | dashIfEmpty"></a>
-          <div class="pull-right form-inline">
+          <div class="form-inline">
             <button type="button" class="btn btn-default btn-sm" ng-click="editWallet(wallet)"
               disabled-if-no-accounts-or-wallet-available="{{wallet.address}}">
               Edit
@@ -79,9 +79,9 @@
           
         </td>
         <td>
-          <span class="col-xs-9" value-or-dash-by-connectivity="{{wallet.confirmations|bigNumber|dashIfEmpty}}"></span>
+          <span class="col-xs-6" value-or-dash-by-connectivity="{{wallet.confirmations|bigNumber|dashIfEmpty}}"></span>
           <button type="button" disabled-if-no-accounts-or-wallet-available="{{wallet.address}}"
-            class="btn btn-default btn-sm col-xs-3"
+            class="btn btn-default btn-sm col-xs-6 pull-right"
             ng-click="setRequired(wallet)">
             Edit
           </button>
