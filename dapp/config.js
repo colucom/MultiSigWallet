@@ -131,21 +131,9 @@ if (isElectron) {
 var txTokens = {
   tokens: [
     {
-      'address': '0x967044ac23edf859e66af7819fb8b400501d65a7',
-      'name': 'Test Token',
-      'symbol': 'TTT',
-      'decimals': 18
-    },
-    {
-      'address': '0xf0d58e5cb3d7b7210d84c81559690071384b0f60',
-      'name': 'Test Token2',
-      'symbol': 'TTT2',
-      'decimals': 18
-    },
-    {
-      'address': '0x8de8a1ea9caa18fdacbf3e4b70e093d70aa2607e',
-      'name': 'Test Token3',
-      'symbol': 'TTT3',
+      'address': '0x7c1d93f1643e0551b142ab17ff9f303a0a02cd6f',
+      'name': 'ColuLocalNetwork',
+      'symbol': 'CLN',
       'decimals': 18
     }
   ]
