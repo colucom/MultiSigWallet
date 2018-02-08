@@ -109,9 +109,11 @@
           }
         }
         else {
-          bg = new Web3().toBigNumber(log)
-          if (bg)
-            return bg.toString(10)
+          try {
+            var bg = new Web3().toBigNumber(log)
+            if (bg)
+              return bg.toString(10)
+          } catch (e) {} 
           return log;
         }
       };
@@ -199,6 +201,9 @@
             var wallet = Wallet.wallets[key];
             if ( wallet && wallet.owners && wallet.owners[addressCandidate] && wallet.owners[addressCandidate].name){
               return wallet.owners[addressCandidate].name;
+            }
+            else if(key === addressCandidate) {
+             return  Wallet.wallets[key].name
             }
           }
           return addressCandidate;
