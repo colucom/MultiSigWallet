@@ -326,49 +326,51 @@
             ids.map(function (tx) {
               if (!$scope.transactions[tx]) {
                 $scope.transactions[tx] = {};
-              }
-              // Get transaction info
-              txBatch.add(
-                Wallet.getTransaction($scope.wallet.address, tx, function (e, info) {
-                  if (!e && info.to) {
-                    $scope.$apply(function () {
-                      // Added reference to the wallet
-                      info.from = $scope.wallet.address;
-                      Object.assign($scope.transactions[tx], info);
+                // Get transaction info
+                txBatch.add(
+                  // check if already got transacation data once.
+                  Wallet.getTransaction($scope.wallet.address, tx, function (e, info) {
+                    if (!e && info.to) {
+                      $scope.$apply(function () {
+                        // Added reference to the wallet
+                        info.from = $scope.wallet.address;
+                        Object.assign($scope.transactions[tx], info);
 
-                      var savedABI = ABI.get()[info.to];
+                        var savedABI = ABI.get()[info.to];
 
-                      // Get data info if data has not being decoded, because is a new transactions or we don't have the abi to do it
-                      if (!$scope.transactions[tx].dataDecoded || $scope.transactions[tx].dataDecoded.notDecoded || ($scope.transactions[tx].dataDecoded.usedABI && (!savedABI || savedABI.abi ))) {
-                        $scope.transactions[tx].dataDecoded = $scope.getParam($scope.transactions[tx]);
-                        if ($scope.transactions[tx].dataDecoded.notDecoded) {
-                          // Try fetching from etherscan
-                          Transaction.getEthereumChain().then(
-                            function (data) {
-                              var config = Config.getUserConfiguration()
-                              var etherscanApiKey = config.etherscanApiKey
-                              var etherscanApiBaseUrl = data.etherscanApi
-                              $http.get(etherscanApiBaseUrl + '/api?module=contract&action=getabi&address=' + info.to + '&apikey=' + etherscanApiKey)
-                                .then(function (response) {
-                                  if (response.data.message === 'OK') {
-                                    // save in local storage
-                                    var abiArray = JSON.parse(response.data.result)
-                                    ABI.update(abiArray, info.to)
-                                    // update table
-                                    $scope.transactions[tx].dataDecoded = $scope.getParam($scope.transactions[tx]);
-                                  }
-                                })
-                            })
+                        // Get data info if data has not being decoded, because is a new transactions or we don't have the abi to do it
+                        if (!$scope.transactions[tx].dataDecoded || $scope.transactions[tx].dataDecoded.notDecoded || ($scope.transactions[tx].dataDecoded.usedABI && (!savedABI || savedABI.abi ))) {
+                          $scope.transactions[tx].dataDecoded = $scope.getParam($scope.transactions[tx]);
+                          if ($scope.transactions[tx].dataDecoded.notDecoded) {
+                            // Try fetching from etherscan
+                            Transaction.getEthereumChain().then(
+                              function (data) {
+                                var config = Config.getUserConfiguration()
+                                var etherscanApiKey = config.etherscanApiKey
+                                var etherscanApiBaseUrl = data.etherscanApi
+                                $http.get(etherscanApiBaseUrl + '/api?module=contract&action=getabi&address=' + info.to + '&apikey=' + etherscanApiKey)
+                                  .then(function (response) {
+                                    if (response.data.message === 'OK') {
+                                      // save in local storage
+                                      var abiArray = JSON.parse(response.data.result)
+                                      ABI.update(abiArray, info.to)
+                                      // update table
+                                      $scope.transactions[tx].dataDecoded = $scope.getParam($scope.transactions[tx]);
+                                    }
+                                  })
+                              })
+                          }
                         }
-                      }
-                      // If destionation type has not been set
-                      if (!$scope.transactions[tx].destination) {
-                        $scope.transactions[tx].destination = $scope.getDestination($scope.transactions[tx]);
-                      }
-                    });
-                  }
-                })
-              );
+                        // If destionation type has not been set
+                        if (!$scope.transactions[tx].destination) {
+                          $scope.transactions[tx].destination = $scope.getDestination($scope.transactions[tx]);
+                        }
+                      });
+                    }
+                  })
+                );
+              }
+
               // Get transaction confirmations
               txBatch.add(
                 Wallet.getConfirmations($scope.wallet.address, tx, function (e, confirmations) {
