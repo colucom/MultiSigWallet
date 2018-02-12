@@ -112,9 +112,8 @@
           from: Web3Service.coinbase
         };
 
-        //
-
         Object.assign(txParams, tx);
+        console.log('txParams', txParams);
         return txParams;
       };
 
@@ -1279,7 +1278,7 @@
                 tx.value,
                 data,
                 count,
-                wallet.txDefaults(),
+                wallet.txDefaults(tx)
               ],
               options,
               cb
