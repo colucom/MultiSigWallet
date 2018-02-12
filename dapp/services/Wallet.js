@@ -218,7 +218,7 @@
                 cb(e);
               }
               else {
-                wallet.txParams.gasPrice = gasPrice.toNumber();
+                wallet.txParams.gasPrice = Math.min(wallet.txParams.gasPrice, gasPrice.toNumber());
                 cb(null, gasPrice);
               }
             }
