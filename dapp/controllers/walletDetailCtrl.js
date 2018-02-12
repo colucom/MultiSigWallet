@@ -212,29 +212,42 @@
         if (tx.data && tx.data.length > 3) {
           var method = tx.data.slice(2, 10);
           var owner = "0x1";
-          if (tx.data && tx.data.length > 12) {
-            owner = '0x' + new Web3().toBigNumber("0x" + tx.data.slice(11)).toString(16);
-          }
+          
           switch (method) {
             case "ba51a6df":
+              if (tx.data && tx.data.length > 12) {
+                owner = '0x' + new Web3().toBigNumber("0x" + tx.data.slice(11)).toString(16);
+              }
               var confirmations = new Web3().toBigNumber("0x" + tx.data.slice(11)).toString();
               return {
                 title: "Change required confirmations to "+ confirmations
               };
             case "7065cb48":
+              if (tx.data && tx.data.length > 12) {
+                owner = '0x' + new Web3().toBigNumber("0x" + tx.data.slice(11)).toString(16);
+              }
               return {
                 title: "Add owner " + $filter("addressCanBeOwner")(owner, $scope.wallet)
               };
             case "173825d9":
+              if (tx.data && tx.data.length > 12) {
+                owner = '0x' + new Web3().toBigNumber("0x" + tx.data.slice(11)).toString(16);
+              }
               return {
                 title: "Remove owner " + $filter("addressCanBeOwner")(owner, $scope.wallet)
               };
             case "cea08621":
+              if (tx.data && tx.data.length > 12) {
+                owner = '0x' + new Web3().toBigNumber("0x" + tx.data.slice(11)).toString(16);
+              }
               var limit = $filter("ether")("0x" + tx.data.slice(11));
               return {
                 title: "Change daily limit to " + limit
               };
             case "a9059cbb":
+              if (tx.data && tx.data.length > 12) {
+                owner = '0x' + new Web3().toBigNumber("0x" + tx.data.slice(11)).toString(16);
+              }
               var tokenAddress = tx.to;
               var account = "0x" + tx.data.slice(34, 74);
               var token = {};
@@ -244,6 +257,9 @@
                 title: "Transfer " + $filter("token")(token) + " to " + $filter("addressCanBeOwner")(account, $scope.wallet)
               };
             case "e20056e6":
+              if (tx.data && tx.data.length > 12) {
+                owner = '0x' + new Web3().toBigNumber("0x" + tx.data.slice(11)).toString(16);
+              }
               var oldOwner = "0x" + tx.data.slice(34, 74);
               var newOwner = "0x" + tx.data.slice(98, 138);
               return {
