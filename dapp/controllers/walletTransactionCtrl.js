@@ -26,6 +26,7 @@
             $scope.abi = JSON.stringify($scope.abis[to].abi);
             $scope.name = $scope.abis[to].name;
             $scope.updateMethods();
+            $scope.calculateGas();
           } else {
             // try to fetch from etherscan
             Transaction.getEthereumChain().then(
@@ -38,6 +39,7 @@
                     if (response.data.message === 'OK') {
                       $scope.abi = response.data.result
                       $scope.updateMethods();
+                      $scope.calculateGas();
                       // save for next time
                       ABI.update($scope.abiArray, to, $scope.name)
                     }
@@ -45,6 +47,19 @@
               })
           }
         }
+      };
+
+      $scope.calculateGas = function () {
+         Web3Service.web3.eth.getGasPrice(
+          function (e, gasPrice) {
+            if (e) {
+              Utils.dangerAlert(e);
+            }
+            else {
+              $scope.tx.gasPrice = gasPrice.toNumber();
+            }
+          }
+        );
       };
 
       // Parse abi
