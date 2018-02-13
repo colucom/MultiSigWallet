@@ -2,9 +2,24 @@
   function () {
     angular
     .module("multiSigWeb")
-    .controller("confirmTransactionCtrl", function ($scope, txId, address, Wallet, Transaction, $uibModalInstance, Utils) {
+    .controller("confirmTransactionCtrl", function (Web3Service, $scope, txId, address, Wallet, Transaction, $uibModalInstance, Utils) {
+      $scope.tx = {};
+
+      $scope.calculateGas = function () {
+         Web3Service.web3.eth.getGasPrice(
+          function (e, gasPrice) {
+            if (e) {
+              Utils.dangerAlert(e);
+            }
+            else {
+              $scope.tx.gasPrice = gasPrice.toNumber();
+            }
+          }
+        );
+      };
+
       $scope.send = function () {
-        Wallet.confirmTransaction(address, txId, {onlySimulate: false}, function (e, tx) {
+        Wallet.confirmTransaction(address, txId, {onlySimulate: false, gasPrice: $scope.tx.gasPrice}, function (e, tx) {
           if (e) {
             Utils.dangerAlert(e);
           }
@@ -19,7 +34,7 @@
       };
 
       $scope.simulate = function () {
-        Wallet.confirmTransaction(address, txId, {onlySimulate: true}, function (e, tx) {
+        Wallet.confirmTransaction(address, txId, {onlySimulate: true, gasPrice: $scope.tx.gasPrice}, function (e, tx) {
           if (e) {
             Utils.dangerAlert(e);
           }

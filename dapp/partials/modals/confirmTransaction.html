@@ -3,13 +3,19 @@
     Confirm transaction
   </h3>
 </div>
+<div class="modal-body" ng-init="calculateGas()">
+  <div class="form-group">
+    <label for="gasPrice">Gas price</label>
+    <input id="gasPrice" type="number" class="form-control" ng-model="tx.gasPrice" min="0" max="9999999999999999">
+  </div>
+</div>
 <div class="modal-footer">
   <button type="button" class="btn btn-default" ng-click="send()">
     Send transaction
   </button>
   <button type="button" class="btn btn-default" ng-click="simulate()">
     Simulate transaction
-  </button>    
+  </button>
   <button type="button" class="btn btn-danger" ng-click="cancel()">
     Cancel
   </button>

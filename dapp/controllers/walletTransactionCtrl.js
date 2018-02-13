@@ -79,7 +79,7 @@
       };
 
       $scope.send = function () {
-        console.log('$scope.tx.gasPrice', $scope.tx.gasPrice);
+        // console.log('$scope.tx.gasPrice', $scope.tx.gasPrice);
         var tx = {};
         Object.assign(tx, $scope.tx);
         var params = [];

@@ -113,7 +113,7 @@
         };
 
         Object.assign(txParams, tx);
-        console.log('txParams', txParams);
+        // console.log('txParams', txParams);
         return txParams;
       };
 
@@ -1102,7 +1102,7 @@
                 [
                   txId,
                   {
-                    gasPrice: defaults.gasPrice,
+                    gasPrice: options.gasPrice || defaults.gasPrice,
                     gas: internalGas ? internalGas + gas : gas, //+ defaults.confirmAddGas,
                     from: defaults.from
                   }
