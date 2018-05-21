@@ -131,7 +131,7 @@ if (isElectron) {
 var txTokens = {
   tokens: [
     {
-      'address': '0x4162178B78D6985480A308B2190EE5517460406D',
+      'address': '0x41C9d91E96b933b74ae21bCBb617369CBE022530',
       'name': 'ColuLocalNetwork',
       'symbol': 'CLN',
       'decimals': 18
