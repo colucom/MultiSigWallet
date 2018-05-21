@@ -141,6 +141,24 @@ var txTokens = {
       'name': 'Tel Aviv Coin',
       'symbol': 'TLV',
       'decimals': 18
+    },
+    {
+      'address': '0x245Cf01FeCAA32AB0566c318D1f28Df91CaF7865',
+      'name': 'Haifa Coin',
+      'symbol': 'HFA',
+      'decimals': 18
+    },
+    {
+      'address': '0x2578Db1F17290559198c3f78fF56f50471261441',
+      'name': 'Liverpool Coin',
+      'symbol': 'LVP',
+      'decimals': 18
+    },
+    {
+      'address': '0xB8ef4FF697Df6586b9C73412904A6AB7b8dD727E',
+      'name': 'London Coin',
+      'symbol': 'LDN',
+      'decimals': 18
     }
   ]
 }
