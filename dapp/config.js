@@ -135,6 +135,12 @@ var txTokens = {
       'name': 'ColuLocalNetwork',
       'symbol': 'CLN',
       'decimals': 18
+    },
+    {
+      'address': '0x24a85B72700cEc4cF1912ADCEBdB9E8f60BdAb91',
+      'name': 'Tel Aviv Coin',
+      'symbol': 'TLV',
+      'decimals': 18
     }
   ]
 }
