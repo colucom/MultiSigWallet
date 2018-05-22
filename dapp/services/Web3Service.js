@@ -72,6 +72,13 @@
       };
 
       factory.sendTransaction = function (method, params, options, cb) {
+        // console.log('sendTransaction', params)
+        params.forEach(function(param) {
+          if(param && param.data) {
+            delete param.value
+          }
+        })
+
         // Simulate first
         function sendIfSuccess(e, result) {
           if (e) {
