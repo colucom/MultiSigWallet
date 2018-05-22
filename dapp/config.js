@@ -135,7 +135,33 @@ var txTokens = {
       'name': 'ColuLocalNetwork',
       'symbol': 'CLN',
       'decimals': 18
+    },
+    /*
+    {
+      'address': '',
+      'name': 'TelAvivCoin',
+      'symbol': 'TLV',
+      'decimals': 18
+    },
+    {
+      'address': '',
+      'name': 'HaifaCoin',
+      'symbol': 'HFA',
+      'decimals': 18
+    },
+    {
+      'address': '',
+      'name': 'LiverpoolCoin',
+      'symbol': 'LVP',
+      'decimals': 18
+    },
+    {
+      'address': '',
+      'name': 'LondonCoin',
+      'symbol': 'LDN',
+      'decimals': 18
     }
+    */
   ]
 }
 

@@ -71,6 +71,63 @@
 					"0x5f24f54BD31e0c6CA8179481702576DCE5F7A2A2": "Dudu (Ledger Blue)"
 				},
 				"tokens": {}
+			},
+			/*
+			"": {
+				"name": "Colu assets",
+				"owners": {
+					"0x46C921Ed418D46b752366f9CFF4279De998ef5C0": "Amos",
+					"0x7c2DC9A052042A8b9822d26c1DfBf1492dd348c3": "Mark",
+					"0x0731C878BB719A1E28B43986CaAA25Dc1527BF8D": "Dudu",
+					"0x531C6cD409Fef64F74607592122CB97a88d152c4": "Rotem",
+					"0xDF6640dB4E24EE7dca8cc0d6939121567d3E2609": "Tal"
+				},
+				"tokens": {}
+			},
+			"": {
+				"name": "Tel Aviv assets",
+				"owners": {
+					"0x46C921Ed418D46b752366f9CFF4279De998ef5C0": "Amos",
+					"0x7c2DC9A052042A8b9822d26c1DfBf1492dd348c3": "Mark",
+					"0x0731C878BB719A1E28B43986CaAA25Dc1527BF8D": "Dudu",
+					"0x531C6cD409Fef64F74607592122CB97a88d152c4": "Rotem",
+					"0xDF6640dB4E24EE7dca8cc0d6939121567d3E2609": "Tal"
+				},
+				"tokens": {}
+			},
+			"": {
+				"name": "Haifa assets",
+				"owners": {
+					"0x46C921Ed418D46b752366f9CFF4279De998ef5C0": "Amos",
+					"0x7c2DC9A052042A8b9822d26c1DfBf1492dd348c3": "Mark",
+					"0x0731C878BB719A1E28B43986CaAA25Dc1527BF8D": "Dudu",
+					"0x531C6cD409Fef64F74607592122CB97a88d152c4": "Rotem",
+					"0xDF6640dB4E24EE7dca8cc0d6939121567d3E2609": "Tal"
+				},
+				"tokens": {}
+			},
+			"": {
+				"name": "Liverpool assets",
+				"owners": {
+					"0x46C921Ed418D46b752366f9CFF4279De998ef5C0": "Amos",
+					"0x7c2DC9A052042A8b9822d26c1DfBf1492dd348c3": "Mark",
+					"0x0731C878BB719A1E28B43986CaAA25Dc1527BF8D": "Dudu",
+					"0x531C6cD409Fef64F74607592122CB97a88d152c4": "Rotem",
+					"0xDF6640dB4E24EE7dca8cc0d6939121567d3E2609": "Tal"
+				},
+				"tokens": {}
+			},
+			"": {
+				"name": "London assets",
+				"owners": {
+					"0x46C921Ed418D46b752366f9CFF4279De998ef5C0": "Amos",
+					"0x7c2DC9A052042A8b9822d26c1DfBf1492dd348c3": "Mark",
+					"0x0731C878BB719A1E28B43986CaAA25Dc1527BF8D": "Dudu",
+					"0x531C6cD409Fef64F74607592122CB97a88d152c4": "Rotem",
+					"0xDF6640dB4E24EE7dca8cc0d6939121567d3E2609": "Tal"
+				},
+				"tokens": {}
 			}
+			*/
 		}
 	}
