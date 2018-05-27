@@ -136,32 +136,24 @@ var txTokens = {
       'symbol': 'CLN',
       'decimals': 18
     },
-    /*
     {
-      'address': '',
+      'address': '0xa27D94001A2a58395b1bb34Ea2F842912A906163',
       'name': 'TelAvivCoin',
       'symbol': 'TLV',
       'decimals': 18
     },
     {
-      'address': '',
+      'address': '0xB74a54b41eA5501117D6d39d6BF7f182Aec176fD',
       'name': 'HaifaCoin',
       'symbol': 'HFA',
       'decimals': 18
     },
     {
-      'address': '',
+      'address': '0x90CAEa54c91883473998Af705b3F9A2511787dEC',
       'name': 'LiverpoolCoin',
       'symbol': 'LVP',
       'decimals': 18
-    },
-    {
-      'address': '',
-      'name': 'LondonCoin',
-      'symbol': 'LDN',
-      'decimals': 18
     }
-    */
   ]
 }
 
