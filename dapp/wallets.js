@@ -72,8 +72,7 @@
 				},
 				"tokens": {}
 			},
-			/*
-			"": {
+			"0x307a0E782F29Ee871Df1E96496D538E1BA13147e": {
 				"name": "Colu assets",
 				"owners": {
 					"0x46C921Ed418D46b752366f9CFF4279De998ef5C0": "Amos",
@@ -84,7 +83,7 @@
 				},
 				"tokens": {}
 			},
-			"": {
+			"0x90B59f1949bC4481639A8aA411030bb4694B3eDa": {
 				"name": "Tel Aviv assets",
 				"owners": {
 					"0x46C921Ed418D46b752366f9CFF4279De998ef5C0": "Amos",
@@ -95,7 +94,7 @@
 				},
 				"tokens": {}
 			},
-			"": {
+			"0xa895e66750876823431AAE12D49Ff7a54b56B4c7": {
 				"name": "Haifa assets",
 				"owners": {
 					"0x46C921Ed418D46b752366f9CFF4279De998ef5C0": "Amos",
@@ -106,7 +105,7 @@
 				},
 				"tokens": {}
 			},
-			"": {
+			"0xE58C5A3Cd195A32e517516836456cBC0b55652c9": {
 				"name": "Liverpool assets",
 				"owners": {
 					"0x46C921Ed418D46b752366f9CFF4279De998ef5C0": "Amos",
@@ -116,18 +115,6 @@
 					"0xDF6640dB4E24EE7dca8cc0d6939121567d3E2609": "Tal"
 				},
 				"tokens": {}
-			},
-			"": {
-				"name": "London assets",
-				"owners": {
-					"0x46C921Ed418D46b752366f9CFF4279De998ef5C0": "Amos",
-					"0x7c2DC9A052042A8b9822d26c1DfBf1492dd348c3": "Mark",
-					"0x0731C878BB719A1E28B43986CaAA25Dc1527BF8D": "Dudu",
-					"0x531C6cD409Fef64F74607592122CB97a88d152c4": "Rotem",
-					"0xDF6640dB4E24EE7dca8cc0d6939121567d3E2609": "Tal"
-				},
-				"tokens": {}
 			}
-			*/
 		}
 	}
