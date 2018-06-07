@@ -153,6 +153,12 @@ var txTokens = {
       'name': 'LiverpoolCoin',
       'symbol': 'LVP',
       'decimals': 18
+    },
+    {
+      'address': '0xEB027349398De19D925DefC15c4302fE92FC69f9',
+      'name': ' ColuLocalNetworkSmartTokenRelay',
+      'symbol': 'CLNBNT',
+      'decimals': 18
     }
   ]
 }
