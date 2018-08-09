@@ -178,10 +178,6 @@ var txDefault = {
       name: "Remote Kovan"
     },
     {
-      url : "https://ropsten.colu.com",
-      name: "Colu Ropsten"
-    },
-    {
       url : "http://localhost:8545",
       name: "Local node"
     }
